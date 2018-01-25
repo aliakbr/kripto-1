@@ -52,8 +52,6 @@ class Vigenere_Cypher:
             if is_alphabet(plaintext[i]):
                 enc_ascii = ((ord(plaintext[i]) + ord(padded_key[i]) - 2*ASCII_BASE) % 26) + ASCII_BASE
                 output += chr(enc_ascii)
-            else:
-                output += plaintext[i]
         return output
 
     def decrypt(self, key, encrypted):
@@ -71,6 +69,4 @@ class Vigenere_Cypher:
             if is_alphabet(encrypted[i]):
                 dec_ascii = ((ord(encrypted[i]) - ord(padded_key[i])) % 26) + ASCII_BASE
                 output += chr(dec_ascii)
-            else:
-                output += encrypted[i]
         return output
