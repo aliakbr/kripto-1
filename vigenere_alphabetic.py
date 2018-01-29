@@ -1,6 +1,7 @@
 """
     Script for alphabetic vigenere
 """
+import re
 
 ASCII_BASE = 97
 
@@ -28,8 +29,6 @@ def padd_key(key, plaintext):
             j += 1
             if (j == len(key)):
                 j = 0
-        else:
-            output += plaintext[i + len(key)]
     return output
 
 
@@ -47,11 +46,11 @@ class Vigenere_Cypher:
                 string of encrypted string
         """
         output = ""
+        plaintext = re.sub(r'[^a-zA-Z]',r'', plaintext)
         padded_key = padd_key(key, plaintext)
         for i in range(len(plaintext)):
-            if is_alphabet(plaintext[i]):
-                enc_ascii = ((ord(plaintext[i]) + ord(padded_key[i]) - 2*ASCII_BASE) % 26) + ASCII_BASE
-                output += chr(enc_ascii)
+            enc_ascii = ((ord(plaintext[i]) + ord(padded_key[i]) - 2*ASCII_BASE) % 26) + ASCII_BASE
+            output += chr(enc_ascii)
         return output
 
     def decrypt(self, key, encrypted):
@@ -66,7 +65,6 @@ class Vigenere_Cypher:
         output = ""
         padded_key = padd_key(key, encrypted)
         for i in range(len(encrypted)):
-            if is_alphabet(encrypted[i]):
-                dec_ascii = ((ord(encrypted[i]) - ord(padded_key[i])) % 26) + ASCII_BASE
-                output += chr(dec_ascii)
+            dec_ascii = ((ord(encrypted[i]) - ord(padded_key[i])) % 26) + ASCII_BASE
+            output += chr(dec_ascii)
         return output
