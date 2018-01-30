@@ -1,9 +1,35 @@
 """
     Main Program
 """
-from vigenere_alphabetic import Vigenere_Cypher
+from vigenere_alphabetic import Vigenere_Cypher, is_alphabet
 from playfair_alphabetic import Playfair
 from vigenere_ascii import Vigenere_Ascii
+
+def output_5_gram(cipher):
+    five_grams_cipher = []
+    count = 0
+    five_grams_word = ""
+    for c in cipher:
+        five_grams_word += c
+        count += 1
+        if count == 5:
+            five_grams_cipher.append(five_grams_word)
+            count = 0
+            five_grams_word = ""
+    if five_grams_word:
+        five_grams_cipher.append(five_grams_word)
+    return ' '.join(five_grams_cipher)
+
+def output_as_plaintext(cipher, plaintext):
+    output = ""
+    i = 0
+    for c in plaintext:
+        if is_alphabet(c):
+            output += cipher[i]
+            i += 1
+        else:
+            output += " "
+    return output
 
 print ("Welcome to Kripto-1!")
 print ("Choose your option!")
@@ -73,7 +99,11 @@ else:
 
 if input_opt != 3:
     if opt == 1:
-        print("Your encrypted message : {}".format(result))
+        print ("Your plaintext : {}".format(plaintext))
+        print("Your encrypted message (raw): {}".format(result))
+        # Print formatted ciphertext
+        print ("Your encrypted message (in 5 gram) : {}".format(output_5_gram(result)))
+        print ("Your encrypted message (same as plaintext) : {}".format(output_as_plaintext(result, plaintext)))
     else:
         print ("Your decrypted message : {}".format(result))
 
