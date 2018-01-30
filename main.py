@@ -106,13 +106,13 @@ if input_opt != 3:
         print ("Your plaintext : {}".format(plaintext))
         print("Your encrypted message (raw): {}".format(result))
         # Print formatted ciphertext
-        print ("Your encrypted message (in 5 gram) : {}".format(output_5_gram(result)))
-        print ("Your encrypted message (same as plaintext) : {}".format(output_as_plaintext(result, plaintext)))
-        result = "{}\n{}\n{}\n".format(result, output_5_gram(result), output_as_plaintext(result, plaintext))
+        if alg_opt != 2:
+            print ("Your encrypted message (in 5 gram) : {}".format(output_5_gram(result)))
+            print ("Your encrypted message (same as plaintext) : {}".format(output_as_plaintext(result, plaintext)))
+
     else:
         print ("Your cipher : {}".format(plaintext))
-        print ("Your decrypted message : {}".format(output_as_plaintext(result, plaintext)))
-        result = output_as_plaintext(result, plaintext)
+        print ("Your decrypted message : {}".format(result))
 
 savefile = input("Input your output filename :")
 if input_opt == 3:

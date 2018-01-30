@@ -49,7 +49,10 @@ def create_bigram_string(plaintext):
                     bigram_str += c + " "
                 prev_char = ""
             else:
-                bigram_str += 'z '  # Put Z if we found 2 same character
+                if prev_char != 'z':
+                    bigram_str += 'z '  # Put Z if we found 2 same character
+                else:
+                    bigram_str += 'x '  # Put x if we found 2 same character
                 bigram_str += c
                 prev_char = c
 
