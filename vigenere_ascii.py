@@ -26,13 +26,12 @@ class Vigenere_Ascii:
     """
     def encrypt(self, key, plaintext):
         """
-            This function will return ciphertext of the plain ascii Text
+            This function will return ciphertext of the plain ascii Text in char
             Input : Sequence of ASCII bytes
-            output : Encrypted sequence of ascii bytes
+            output : Encrypted sequence of ascii bytes in char
         """
         output = []
         padded_key = padd_key(key, plaintext)
-        print (padded_key)
         for i in range(len(plaintext)):
             enc_ascii = (ord(plaintext[i]) + ord(padded_key[i])) % 256
             output.append(chr(enc_ascii))
@@ -50,7 +49,6 @@ class Vigenere_Ascii:
         """
         output = []
         padded_key = padd_key(key, encrypted)
-        print (padded_key)
         for i in range(len(encrypted)):
             dec_ascii = (ord(encrypted[i]) - ord(padded_key[i])) % 256
             output.append(chr(dec_ascii))

@@ -34,6 +34,7 @@ def create_bigram_string(plaintext):
         Create string consist of bigram
     """
     plaintext = re.sub(r'[^a-zA-Z]', r'', plaintext)
+    plaintext = plaintext.replace('j', 'i')
     bigram_str = ""
     prev_char = ""
     for i, c in enumerate(plaintext):
@@ -164,11 +165,11 @@ class Playfair:
             i2, j2 = search_index(self.matrix, tup[1])
 
             if i1 == i2:
-                if (j1 - 1) == 0:
+                if (j1 - 1) < 0:
                     j1 = 4
                 else:
                     j1 -= 1
-                if (j2 - 1) == 0:
+                if (j2 - 1) < 0:
                     j2 = 4
                 else:
                     j2 -= 1
