@@ -66,6 +66,7 @@ class Playfair:
     def __init__(self, keyword):
         # Init keyword
         self.keyword = keyword.lower()
+        self.keyword = self.keyword.replace("j","")
 
         # Init table
         w, h = 5, 5
@@ -111,8 +112,8 @@ class Playfair:
         """
             Encrypt plaintext with keyword
         """
+        plaintext = plaintext.lower()
         bigram_str = create_bigram_string(plaintext)
-        print (bigram_str)
 
         # Encryption process
         encrypted = ""
@@ -159,7 +160,6 @@ class Playfair:
         # Decryption process
         decrypted = ""
         list_tup = bigram_str.split(' ')
-        print (bigram_str)
         for tup in list_tup:
             i1, j1 = search_index(self.matrix, tup[0])
             i2, j2 = search_index(self.matrix, tup[1])
@@ -176,7 +176,7 @@ class Playfair:
                 decrypted += self.matrix[i1][j1]
                 decrypted += self.matrix[i2][j2]
             elif j1 == j2:
-                if (i1 - 1) == 0:
+                if (i1 - 1) < 0:
                     i1 = 4
                 else:
                     i1 -= 1

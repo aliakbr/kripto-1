@@ -4,8 +4,8 @@
 from vigenere_alphabetic import Vigenere_Cypher
 
 
-plain_text = "halo halo bandung!"
-key = "sosro"
+plain_text = "Terjadi banjir di sungai ciliwung"
+key = "helehbebe"
 
 # vigenere = Vigenere_Cypher()
 # encrypted = vigenere.encrypt(key, plain_text)

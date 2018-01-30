@@ -22,13 +22,17 @@ def output_5_gram(cipher):
 
 def output_as_plaintext(cipher, plaintext):
     output = ""
+    plaintext = plaintext.lower()
     i = 0
     for c in plaintext:
         if is_alphabet(c):
             output += cipher[i]
             i += 1
         else:
-            output += " "
+            if c != '\n':
+                output += " "
+            else:
+                output += c
     return output
 
 print ("Welcome to Kripto-1!")
@@ -104,8 +108,11 @@ if input_opt != 3:
         # Print formatted ciphertext
         print ("Your encrypted message (in 5 gram) : {}".format(output_5_gram(result)))
         print ("Your encrypted message (same as plaintext) : {}".format(output_as_plaintext(result, plaintext)))
+        result = "{}\n{}\n{}\n".format(result, output_5_gram(result), output_as_plaintext(result, plaintext))
     else:
-        print ("Your decrypted message : {}".format(result))
+        print ("Your cipher : {}".format(plaintext))
+        print ("Your decrypted message : {}".format(output_as_plaintext(result, plaintext)))
+        result = output_as_plaintext(result, plaintext)
 
 savefile = input("Input your output filename :")
 if input_opt == 3:
