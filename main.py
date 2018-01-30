@@ -1,32 +1,68 @@
 """
-    This script used to be the main program
+    Main Program
 """
 from vigenere_alphabetic import Vigenere_Cypher
-
-
-plain_text = "hello world"
-key = "sosro"
-
-vigenere = Vigenere_Cypher()
-encrypted = vigenere.encrypt(key, plain_text)
-decrypted = vigenere.decrypt(key, encrypted)
-
-print (plain_text)
-print (key)
-print (encrypted)
-print (decrypted)
-
 from playfair_alphabetic import Playfair, search
 
-playfair = Playfair(key)
+print ("Welcome to Kripto 1!")
+print ("Choose your option!")
+print("1. Encrypt")
+print("2. Decrypt")
+opt = 0
+in_opt = 0
+alg_opt = 0
+while opt != 1 and opt != 2:
+    opt = int(input("Input :"))
 
-matrix = playfair.matrix
+if opt == 1:
+    print ("Input your plaintext")
+    print ("1. File")
+    print ("2. Standard Input")
+    while in_opt != 1 and in_opt != 2:
+        in_opt = int(input("Enter your option :"))
+    if in_opt == 1:
+        input_text = input("Enter text file :")
+        plaintext = open(input_text, "r")
+    else:
+        input_text = input("Enter plaintext :")
 
-for i in range(5):
-    for j in range(5):
-        print(matrix[i][j], end='')
-    print("")
+    key = input("Enter the key :")
 
-p_encryted = playfair.encrypt(plain_text)
-print (p_encryted)
-print (playfair.decrypt(p_encryted))
+    print ("Choose your algorithm")
+    print ("1. Vigenere Cipher")
+    print ("2. Playfair Cipher")
+    while alg_opt != 1 and alg_opt != 2:
+        alg_opt = int(input("Input :"))
+    if alg_opt == 1:
+        vigenere = Vigenere_Cypher()
+        encrypted = vigenere.encrypt(key, input_text)
+    else:
+        playfair = Playfair(key)
+        encryted = playfair.encrypt(input_text)
+    print ("Encrypted Message : {}".format(encrypted))
+else:
+    print ("Input your ciphertext")
+    print ("1. File")
+    print ("2. Standard Input")
+    while in_opt != 1 and in_opt != 2:
+        in_opt = int(input("Enter your option :"))
+    if in_opt == 1:
+        input_text = input("Enter text file :")
+        cipher_text = open(input_text, "r")
+    else:
+        cipher_text = input("Enter cipher:")
+
+    key = input("Enter the key :")
+
+    print ("Choose your algorithm")
+    print ("1. Vigenere Cipher")
+    print ("2. Playfair Cipher")
+    while alg_opt != 1 and alg_opt != 2:
+        alg_opt = int(input("Input :"))
+    if alg_opt == 1:
+        vigenere = Vigenere_Cypher()
+        decrypted = vigenere.decrypt(key, cipher_text)
+    else:
+        playfair = Playfair(key)
+        decrypted = playfair.encrypt(cipher_text)
+    print ("Decrypted Message : {}".format(decrypted))

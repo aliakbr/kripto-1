@@ -3,8 +3,6 @@
 """
 import re
 
-ASCII_BASE = 97
-
 # Built in function to search character in matrix
 def search(matrix, char):
     """
